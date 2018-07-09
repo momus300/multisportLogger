@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        - login=${LOGIN}
+        - pass=${PASS}
+    working_dir: /var/www/html
+    container_name: multisportLogger
+    volumes:
+      - .:/var/www/html
