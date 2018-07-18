@@ -2,12 +2,31 @@ version: "3"
 
 services:
   app:
-    build:
-      context: .
-      args:
-        - login=${LOGIN}
-        - pass=${PASS}
-    working_dir: /var/www/html
+    build: .
+    user: 1000:1000
     container_name: multisportLogger
+    working_dir: /app
     volumes:
-      - .:/var/www/html
+      - .:/app
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db
+
+  db:
+    image: mysql:5.7.22
+    environment:
+      - MYSQL_ROOT_PASSWORD=marek123
+    volumes:
+      - ./dbData:/var/lib/mysql
+
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - 8080:80
+      environment:
+        PMA_HOST: db
+        MYSQL_ROOT_PASSWORD: marek123
+      links:
+        - db
