@@ -43,15 +43,15 @@ class IndexController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid() && $request->isMethod('POST')) {
 
-            if ( ! $logger->logInAs($user->getLogin(), $user->getPassword())) {
+            if ( ! $logger->logInAs($user)) {
                 $this->addFlash('warning',
                     'Błąd, podałeś błędne dane, nie mogę się zalogować');
 
                 return $this->redirectToRoute('index');
             }
-
             $user = $form->getData();
-            $em   = $this->getDoctrine()->getManager();
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
