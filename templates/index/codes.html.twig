@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Kody z punktami na kartamultisport.pl
+{% endblock %}
+
+{% block body %}
+    <h2>Kody z punktami na kartamultisport.pl</h2>
+
+    <ul>
+        {% for code, pkt in codes %}
+            <li><span class="font-weight-bold">{{ code }}</span> - {{ pkt }} punktów</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+

@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Utils\Codes;
 use App\Utils\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -22,10 +23,11 @@ class IndexController extends AbstractController
 
     /**
      * @param Request $request
-     *
-     * @Route("/", name="index", methods={"GET", "POST"})
+     * @param Logger $logger
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/", name="index", methods={"GET", "POST"})
+     *
      */
     public function start(Request $request, Logger $logger)
     {
@@ -63,6 +65,19 @@ class IndexController extends AbstractController
         return $this->render('index/index.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Logger $logger
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/kody", name="codes", methods={"GET"})
+     *
+     */
+    public function codes(Request $request, Logger $logger)
+    {
+        return $this->render('index/codes.html.twig', ['codes' => Codes::CODES]);
     }
 
 }
