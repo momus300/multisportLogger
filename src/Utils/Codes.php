@@ -13,6 +13,8 @@ class Codes
 {
     const CODES = [
         'MSLATO2018'      => 100,
-        'MSGRAJDALEJ2018' => 100
+        'MSGRAJDALEJ2018' => 100,
+        'MSGRA100' => 100,
+        'MSGRA40' => 40
     ];
 }
